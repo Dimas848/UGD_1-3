@@ -138,7 +138,7 @@ export default function HeroSection() {
               href="/about"
               className="flex items-center gap-2 font-grotesk text-[14px] uppercase tracking-[0.4px] text-cyan hover:gap-4 transition-all duration-200"
             >
-              Explore Our Vision <ArrowRight size={14} />
+              Explore Us <ArrowRight size={14} />
             </Link>
           </motion.div>
         </div>
