@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const footerLinks = [
   { label: "Home",       href: "/" },
@@ -8,6 +11,10 @@ const footerLinks = [
 ];
 
 export default function Footer() {
+  const pathname = usePathname();
+
+  if (pathname === "/dashboard" || pathname.startsWith("/dashboard/")) return null;
+
   return (
     <footer className="border-t border-white/5 py-10 px-6 bg-bg-dark">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 flex-wrap">

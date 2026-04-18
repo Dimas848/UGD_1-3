@@ -9,10 +9,9 @@ export default function DeepTechGrid() {
       <div className="max-w-7xl mx-auto">
         <FadeUp className="text-center mb-14">
           <p className="text-[10px] uppercase tracking-[2px] text-cyan mb-3 font-inter">
-            Core Infrastructure
           </p>
           <h2 className="font-grotesk font-bold text-[clamp(32px,4vw,48px)] tracking-[-2px] text-text-primary">
-            Heavy Logistics Grid
+            Heavy Logistics <span className="text-grad-purple">Grid</span> 
           </h2>
         </FadeUp>
 
@@ -27,7 +26,6 @@ export default function DeepTechGrid() {
               fill
               className="object-cover absolute inset-0 w-full h-full"
             />
-            {/* Gradient overlay */}
             <div
               className="absolute inset-0 z-1"
               style={{
@@ -35,7 +33,6 @@ export default function DeepTechGrid() {
                   "linear-gradient(0deg, #121317 0%, rgba(18,19,23,0) 60%)",
               }}
             />
-            {/* Teks di atas gambar */}
             <div className="absolute bottom-10 left-10 z-10">
               <h3 className="font-grotesk font-bold text-[32px] leading-[1.1] tracking-[-0.9px] text-text-primary mb-3">
                 Mega-Vessel <br /> Capacity
@@ -46,7 +43,6 @@ export default function DeepTechGrid() {
             </div>
           </FadeUp>
 
-          {/* Right column — Menjadi flex item 1/3, flex flex-col untuk 2 kotak --- */}
           <div className="flex-[1] flex flex-col gap-4">
             <FadeUp delay={0.1}>
               <div

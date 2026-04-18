@@ -31,11 +31,8 @@ export default function FeedbackSection() {
         
         {/* Header Section */}
         <FadeUp className="text-center mb-16">
-          <p className="font-inter text-[10px] uppercase tracking-[3px] text-[#BDF4FF] mb-3">
-            Operation Logs
-          </p>
           <h2 className="font-grotesk font-bold text-4xl md:text-5xl text-white tracking-[-1px]">
-            CLIENT <span className="text-grad-purple">TRANSMISSIONS</span>
+            What They <span className="text-grad-purple">Say?</span> 
           </h2>
         </FadeUp>
 

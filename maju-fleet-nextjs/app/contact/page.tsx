@@ -28,7 +28,7 @@ export default function ContactPage() {
               className="font-grotesk font-bold tracking-[-3.6px] text-white mb-5"
               style={{ fontSize: "clamp(44px, 6vw, 72px)" }}
             >
-              CONTACT US
+              CONTACT <span className="text-grad-purple">US</span> 
             </h1>
             <p
               className="font-inter font-light text-[18px] tracking-[0.5px] max-w-[480px] mx-auto"

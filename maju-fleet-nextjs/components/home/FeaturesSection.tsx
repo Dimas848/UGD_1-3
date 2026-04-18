@@ -33,11 +33,8 @@ export default function FeaturesSection() {
     <section className="py-24 px-6 bg-bg-mid">
       <div className="max-w-7xl mx-auto">
         <FadeUp className="text-center mb-14">
-          <p className="text-[10px] uppercase tracking-[2px] text-cyan mb-3 font-inter">
-            Fleet Capabilities
-          </p>
           <h2 className="font-grotesk font-bold text-[clamp(32px,4vw,48px)] tracking-[-2px] text-text-primary">
-            Global Cargo Operations
+            Global Cargo <span className="text-grad-purple">Operation</span>
           </h2>
         </FadeUp>
 

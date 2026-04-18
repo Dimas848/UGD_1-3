@@ -70,8 +70,7 @@ export default function HeroSection() {
         style={{ background: "#B026FF", opacity: 0.05, filter: "blur(60px)" }}
       />
 
-      
-        <div className="relative z-10 max-w-[1500px] mx-auto px-8 w-full py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 max-w-[1500px] mx-auto px-8 w-full py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         <div>
           {/* Live chip */}
           <motion.div
@@ -119,8 +118,9 @@ export default function HeroSection() {
             className="flex flex-wrap items-center gap-6"
           >
             <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
-              <Link
-                href="/contact"
+              {/* === PERUBAHAN: Link diganti jadi button dengan onClick === */}
+              <button
+                onClick={() => document.getElementById("login-trigger-btn")?.click()}
                 className="inline-block px-8 py-4 rounded font-grotesk font-bold text-[14px] uppercase tracking-[-0.4px] text-[#4E0078]"
                 style={{
                   background: "linear-gradient(135deg, #E5B5FF 0%, #B026FF 100%)",
@@ -128,7 +128,7 @@ export default function HeroSection() {
                 }}
               >
                 Get Started Today
-              </Link>
+              </button>
             </motion.div>
 
             <Link

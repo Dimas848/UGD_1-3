@@ -14,9 +14,6 @@ export default function AboutMetricsSection() {
         
       
         <FadeUp className="text-center mb-16">
-          <p className="font-inter text-[10px] uppercase tracking-[3px] text-[#BDF4FF] mb-3">
-            Global Logistics Scale
-          </p>
           <h2 className="font-grotesk font-bold text-4xl md:text-5xl text-white tracking-[-1px]">
             NUMBERS THAT <span className="text-grad-purple">DELIVER</span>
           </h2>

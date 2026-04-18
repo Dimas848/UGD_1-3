@@ -53,7 +53,6 @@ export default function ServicesPage() {
           </p>
         </FadeUp>
 
-        
         <div className="flex flex-wrap justify-center gap-6 items-stretch">
           {services.map((s, i) => (
             <FadeUp 
@@ -61,11 +60,12 @@ export default function ServicesPage() {
               delay={i * 0.1} 
               className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex"
             >
-              <div className="w-full p-10 rounded-lg bg-[#1a1b20] border border-white/5 hover:border-white/20 transition-all duration-500 group relative flex flex-col justify-between h-full overflow-hidden">
+              {/* --- PERUBAHAN 1: Kotak luar dinamai 'group/card' --- */}
+              <div className="w-full p-10 rounded-lg bg-[#1a1b20] border border-white/5 hover:border-white/20 transition-all duration-500 group/card relative flex flex-col justify-between h-full overflow-hidden">
                 
-                {/* Decorative background glow on hover (Diperbaiki agar selalu muncul) */}
+                {/* Decorative background glow on hover (Masih pakai group/card) */}
                 <div 
-                  className="absolute -right-10 -top-10 w-32 h-32 blur-3xl transition-opacity duration-500 opacity-5 group-hover:opacity-20 pointer-events-none" 
+                  className="absolute -right-10 -top-10 w-32 h-32 blur-3xl transition-opacity duration-500 opacity-0 group-hover/card:opacity-10 pointer-events-none" 
                   style={{ backgroundColor: s.accent === 'purple' ? '#B026FF' : '#BDF4FF' }}
                 />
                 
@@ -79,17 +79,30 @@ export default function ServicesPage() {
                   </p>
                 </div>
                 
+                {/* --- PERUBAHAN 2: Tombol Link dinamai 'group/btn' --- */}
                 <Link 
                   href="/register" 
-                  className="w-full py-4 rounded font-grotesk font-black text-center text-white text-[13px] uppercase tracking-[1.6px] transition-all duration-200 mt-auto relative z-10 hover:scale-[1.02]"
-                  style={{
-                    background: s.accent === 'purple' ? "linear-gradient(135deg, #E5B5FF 0%, #B026FF 100%)" : "linear-gradient(135deg, #E5B5FF 0%, #BDF4FF 100%)",
-                    color: "#4E0078",
-                    boxShadow: "0 10px 30px -10px rgba(176,38,255,0.4)",
-                  }}
+                  className="w-full py-4 rounded font-grotesk font-black text-center text-[13px] uppercase tracking-[1.6px] transition-all duration-500 mt-auto relative z-10 overflow-hidden hover:scale-[1.02] group/btn"
                 >
-                  Initiate Logistics Booking
+                  {/* --- PERUBAHAN 3: Semua efek hover tombol sekarang pakai 'group-hover/btn' --- */}
+
+                  {/* Latar Abu-abu (Default saat diam, hilang saat tombol di-hover) */}
+                  <div className="absolute inset-0 bg-[#27272a] transition-opacity duration-500 group-hover/btn:opacity-0" />
+
+                  {/* Latar Gradient (Muncul perlahan saat tombol di-hover) */}
+                  <div 
+                    className="absolute inset-0 opacity-0 group-hover/btn:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: s.accent === 'purple' ? "linear-gradient(135deg, #E5B5FF 0%, #B026FF 100%)" : "linear-gradient(135deg, #E5B5FF 0%, #BDF4FF 100%)",
+                    }}
+                  />
+
+                  {/* Teks Tombol (Abu-abu terang ke Ungu Gelap saat tombol di-hover) */}
+                  <span className="relative z-10 text-white/50 group-hover/btn:text-[#4E0078] transition-colors duration-500 block">
+                    Initiate Logistics Booking
+                  </span>
                 </Link>
+
               </div>
             </FadeUp>
           ))}

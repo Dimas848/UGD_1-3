@@ -30,7 +30,7 @@ function Toast({ show }: { show: boolean }) {
         >
           <CheckCircle size={18} style={{ color: "#BDF4FF" }} />
           <span className="font-grotesk font-medium text-[14px] text-text-primary">
-            {/* Teks sudah diganti sesuai request */}
+
             ✓ Message has been successfully sent
           </span>
         </motion.div>
