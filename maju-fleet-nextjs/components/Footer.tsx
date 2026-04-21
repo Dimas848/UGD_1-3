@@ -13,7 +13,12 @@ const footerLinks = [
 export default function Footer() {
   const pathname = usePathname();
 
-  if (pathname === "/dashboard" || pathname.startsWith("/dashboard/")) return null;
+  if (
+    pathname === "/dashboard" || 
+    pathname.startsWith("/dashboard/") ||
+    pathname === "/Dashboard-Admin" ||
+    pathname.startsWith("/Dashboard-Admin/")
+  ) return null;
 
   return (
     <footer className="border-t border-white/5 py-10 px-6 bg-bg-dark">

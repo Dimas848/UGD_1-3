@@ -1,111 +1,118 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { User, Lock, ShieldCheck, ArrowLeft } from "lucide-react";
+import { User, Lock, ShieldAlert, X, ArrowLeft, Eye } from "lucide-react";
 import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
-  const handleLogin = async (e: React.FormEvent) => {
+  const handleOverride = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    // Dummy loading process
     await new Promise((resolve) => setTimeout(resolve, 1500));
     setLoading(false);
-    alert("Authorization granted. Redirecting to command center...");
+    alert("Login Authorized. Accessing Command Center...");
   };
 
   return (
-    <main className="min-h-screen bg-[#0a0a0c] flex items-center justify-center relative px-6 overflow-hidden">
+    <main className="min-h-screen bg-[#050505] flex items-center justify-center relative px-6 font-inter overflow-hidden selection:bg-[#B026FF] selection:text-white">
       
-      {/* TOMBOL KEMBALI KE HOME */}
-      <div className="absolute top-8 left-8 z-20">
-        <Link 
-          href="/" 
-          className="flex items-center gap-2 text-white/50 hover:text-[#BDF4FF] transition-colors font-grotesk text-[12px] uppercase tracking-[1.5px]"
-        >
-          <ArrowLeft size={16} /> Back to Home
-        </Link>
+      {/* Background glow ungu halus */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+         <div className="w-[500px] h-[500px] bg-[#B026FF]/5 rounded-full blur-[120px]"></div>
       </div>
 
-      {/* ELEMEN HUD POJOKAN */}
-      <div className="absolute top-10 left-10 w-20 h-20 border-t border-l border-[#B026FF]/40 opacity-50 hidden md:block pointer-events-none"></div>
-      <div className="absolute bottom-10 left-10 w-20 h-20 border-b border-l border-[#B026FF]/40 opacity-50 hidden md:block pointer-events-none"></div>
-      <div className="absolute top-10 right-10 w-20 h-20 border-t border-r border-[#B026FF]/40 opacity-50 hidden md:block pointer-events-none"></div>
-      <div className="absolute bottom-10 right-10 w-20 h-20 border-b border-r border-[#B026FF]/40 opacity-50 hidden md:block pointer-events-none"></div>
-
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.5 }}
-        className="w-full max-w-[400px] z-10"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.3 }}
+        className="w-full max-w-[420px] bg-[#0a0a0c] border border-white/5 rounded-xl p-8 relative z-10 shadow-[0_15px_40px_rgba(0,0,0,0.8)]"
+        style={{ borderTop: "3px solid #B026FF" }}
       >
-        {/* BAGIAN LOGO & JUDUL DIPERBESAR DAN DIMEPETKAN */}
-        <div className="flex flex-col items-center mb-10">
-          <Image
-            src="/logo.png"
-            alt="Maju Fleet Logo"
-            width={180} // Ukuran diperbesar
-            height={180}
-            className="mb-0 opacity-100 drop-shadow-[0_0_15px_rgba(176,38,255,0.3)] -mr-4" // Margin bawah dihapus, gambar ditarik
-          />
-          <h1 className="text-white font-grotesk font-bold text-3xl tracking-[4px] uppercase mt-[-10px]"> {/* mt-minus untuk menarik teks ke atas mendekati logo */}
-            Maju Fleet
-          </h1>
+        {/* Tombol Silang Pojok Kanan Atas */}
+        <button className="absolute top-5 right-5 text-white/30 hover:text-white transition-colors outline-none">
+          <X size={20} strokeWidth={1.5} />
+        </button>
+
+        {/* Shield Icon Ungu */}
+        <div className="flex justify-center mb-6 mt-4">
+          <div className="text-[#B026FF]">
+            <ShieldAlert size={48} strokeWidth={1.5} />
+          </div>
         </div>
 
-        <form onSubmit={handleLogin} className="flex flex-col gap-6">
+        {/* Judul ADMINISTRATOR OVERRIDE */}
+        <h1 className="text-center text-white font-grotesk font-bold text-[20px] tracking-[4px] uppercase mb-10 leading-[1.4]">
+          ADMINISTRATOR<br />OVERRIDE
+        </h1>
+
+        <form onSubmit={handleOverride} className="flex flex-col gap-6">
+          
+          {/* Input COMMANDER ID */}
           <div>
-            <label className="text-white/80 font-grotesk text-[10px] uppercase tracking-[2px] mb-3 block">
-              Username
+            <label className="text-white/80 font-grotesk font-bold text-[10px] uppercase tracking-[2px] mb-2 block">
+              COMMANDER ID
             </label>
-            <div className="relative">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#B026FF] opacity-80">
-                <User size={18} />
-              </div>
+            <div className="relative flex items-center bg-[#0a0a0c] border border-[#B026FF]/30 rounded px-4 py-1 focus-within:border-[#B026FF] focus-within:shadow-[0_0_15px_rgba(176,38,255,0.2)] transition-all">
+              <User size={16} className="text-[#B026FF] mr-4 opacity-90" />
               <input
                 type="text"
                 required
-                placeholder="Enter Crew ID..."
-                className="w-full bg-[#0d0d11] border border-[#B026FF]/30 rounded-md px-12 py-4 text-white font-inter text-[14px] placeholder-white/30 focus:outline-none focus:border-[#B026FF] transition-all duration-300"
+                placeholder="Authorized ID..."
+                className="w-full bg-transparent py-3 text-white/70 font-inter text-[13px] placeholder-white/30 focus:outline-none"
               />
             </div>
           </div>
 
+          {/* Input MASTER KEY */}
           <div>
-            <label className="text-white/80 font-grotesk text-[10px] uppercase tracking-[2px] mb-3 block">
-              Password
+            <label className="text-white/80 font-grotesk font-bold text-[10px] uppercase tracking-[2px] mb-2 block">
+              MASTER KEY
             </label>
-            <div className="relative">
-              <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#B026FF] opacity-80">
-                <Lock size={18} />
-              </div>
+            <div className="relative flex items-center bg-[#0a0a0c] border border-[#B026FF]/30 rounded px-4 py-1 focus-within:border-[#B026FF] focus-within:shadow-[0_0_15px_rgba(176,38,255,0.2)] transition-all">
+              <Lock size={16} className="text-[#B026FF] mr-4 opacity-90" />
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 required
-                placeholder="Enter security key..."
-                className="w-full bg-[#0d0d11] border border-[#B026FF]/30 rounded-md px-12 py-4 text-white font-inter text-[14px] placeholder-white/30 focus:outline-none focus:border-[#B026FF] transition-all duration-300"
+                placeholder="Input clearance code..."
+                className="w-full bg-transparent py-3 text-white/70 font-inter text-[13px] placeholder-white/30 focus:outline-none"
               />
+              <button 
+                type="button" 
+                onClick={() => setShowPassword(!showPassword)}
+                className="text-white/30 hover:text-white/60 ml-3 transition-colors outline-none"
+              >
+                <Eye size={16} />
+              </button>
             </div>
           </div>
 
+          {/* Tombol LOGIN (Sudah Diperbaiki) */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-2 py-4 rounded-md border border-[#B026FF]/50 bg-[#0d0d11] hover:bg-[#B026FF]/10 hover:border-[#B026FF] hover:shadow-[0_0_20px_rgba(176,38,255,0.2)] text-white font-grotesk font-bold text-[13px] uppercase tracking-[3px] transition-all duration-300"
+            className="w-full mt-4 py-4 rounded-[6px] border border-[#B026FF] bg-[#0a0a0c] hover:bg-[#B026FF]/10 text-white font-bold text-[14px] uppercase tracking-[3px] transition-all duration-300"
           >
-            {loading ? "Authenticating..." : "System Login"}
+            {loading ? "AUTHENTICATING..." : "LOGIN"}
           </button>
         </form>
 
-        <div className="mt-10 flex items-center justify-center gap-2 text-[#B026FF]/60">
-          <ShieldCheck size={14} />
-          <span className="font-mono text-[10px] uppercase tracking-[1.5px]">
-            Secure Connection
-          </span>
+        {/* Footer RETURN TO CREW LOGIN */}
+        <div className="mt-8 flex justify-center">
+          <button 
+            type="button"
+            onClick={() => router.push('/login-crew')} 
+            className="flex items-center gap-3 text-white/30 hover:text-white/80 transition-colors font-grotesk font-bold text-[10px] uppercase tracking-[1.5px]"
+          >
+            <ArrowLeft size={14} /> RETURN TO CREW LOGIN
+          </button>
         </div>
+
       </motion.div>
     </main>
   );
